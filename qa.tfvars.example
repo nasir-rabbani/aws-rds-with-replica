@@ -1,0 +1,55 @@
+environment = "qa"
+
+# Database Configuration
+db_identifier = "infra-db"
+engine        = "postgres"
+engine_version = "15.4"
+family        = "postgres15"
+major_engine_version = "15"
+instance_class = "db.t3.micro"
+
+# Storage Configuration
+allocated_storage     = 20
+max_allocated_storage = 100
+storage_type         = "gp2"
+storage_encrypted     = true
+
+# Database Settings
+db_name = "infradb"
+username = "admin"
+password = "ChangeMe123!" # Change this to a secure password
+port     = 5432
+
+# Replicas - QA has no replicas
+replicas = 0
+
+# Network Configuration
+vpc_id    = "vpc-xxxxxxxxx" # Replace with your VPC ID
+vpc_cidr  = "10.0.0.0/16"   # Replace with your VPC CIDR
+subnet_ids = [
+  "subnet-xxxxxxxxx", # Replace with your subnet IDs (at least 2 in different AZs)
+  "subnet-yyyyyyyyy"
+]
+
+create_db_subnet_group = true
+publicly_accessible   = false
+
+# Backup Configuration
+backup_retention_period = 7
+backup_window          = "03:00-04:00"
+maintenance_window     = "mon:04:00-mon:05:00"
+
+# Monitoring
+enabled_cloudwatch_logs_exports = ["postgresql"]
+monitoring_interval            = 60
+
+# Tags
+tags = {
+  Project     = "Infrastructure"
+  Environment = "QA"
+  Team        = "DevOps"
+}
+
+# AWS Region
+aws_region = "us-east-1"
+

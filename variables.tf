@@ -95,6 +95,10 @@ variable "replicas" {
   description = "Number of read replicas to create"
   type        = number
   default     = 0
+  validation {
+    condition     = var.replicas <= 3
+    error_message = "Replicas must be less than or equal to 3."
+  }
 }
 
 variable "vpc_id" {
